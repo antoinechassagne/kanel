@@ -13,6 +13,8 @@ module.exports = {
     'no-plusplus': 0,
     'eslint-disable no-use-before-define': 0,
     'comma-dangle': 0,
+    'no-bitwise': 0,
+    'vue/require-prop-type-constructor': 0,
     'import/extensions': 0
   },
   parserOptions: {
