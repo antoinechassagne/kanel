@@ -4,6 +4,12 @@
     <Heading level="1">Kanel</Heading>
     <ButtonRouter path="/menus">Commencer</ButtonRouter>
     <ButtonAdd @clicked="alert">Produit laitier</ButtonAdd>
+    <List label="Demo liste" :items="items">
+      <template v-slot:default="{ item }">
+        <p>{{ item.label }}</p>
+        <p>{{ item.value }}</p>
+      </template>
+    </List>
     <BaseFooter />
   </div>
 </template>
@@ -14,6 +20,7 @@ import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import ButtonRouter from '@/components/buttons/ButtonRouter';
 import ButtonAdd from '@/components/buttons/ButtonAdd';
+import List from '@/components/texts/List';
 
 export default {
   name: 'Home',
@@ -22,7 +29,17 @@ export default {
     BaseFooter,
     Heading,
     ButtonRouter,
-    ButtonAdd
+    ButtonAdd,
+    List
+  },
+  data() {
+    return {
+      items: [
+        { label: 'Produit laitier', value: 3 },
+        { label: 'Proteine animale', value: 1 },
+        { label: 'Légumes', value: 4 }
+      ]
+    };
   },
   methods: {
     alert() {
