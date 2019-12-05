@@ -3,7 +3,8 @@
     <BaseHeader />
     <Heading level="1">Kanel</Heading>
     <ButtonRouter path="/menus">Commencer</ButtonRouter>
-    <ButtonAdd @clicked="alert">Produit laitier</ButtonAdd>
+    <ButtonAdd @add="alert">Produit laitier</ButtonAdd>
+    <ButtonRemove @remove="alert">Remove</ButtonRemove>
     <List label="Demo liste" :items="items">
       <template v-slot:default="{ item }">
         <p>{{ item.label }}</p>
@@ -20,6 +21,7 @@ import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import ButtonRouter from '@/components/buttons/ButtonRouter';
 import ButtonAdd from '@/components/buttons/ButtonAdd';
+import ButtonRemove from '@/components/buttons/ButtonRemove';
 import List from '@/components/texts/List';
 
 export default {
@@ -30,6 +32,7 @@ export default {
     Heading,
     ButtonRouter,
     ButtonAdd,
+    ButtonRemove,
     List
   },
   data() {
