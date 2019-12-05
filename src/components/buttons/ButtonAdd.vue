@@ -1,4 +1,3 @@
-
 <template>
   <button @click="click">
     <slot />
@@ -7,10 +6,10 @@
 
 <script>
 export default {
-  name: 'ButtonMain',
+  name: 'ButtonAdd',
   methods: {
     click(event) {
-      this.$emit('clicked', event);
+      this.$emit('add', event);
     }
   }
 };

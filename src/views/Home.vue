@@ -3,7 +3,7 @@
     <BaseHeader />
     <Heading level="1">Kanel</Heading>
     <ButtonRouter path="/menus">Commencer</ButtonRouter>
-    <ButtonMain @clicked="alert">click</ButtonMain>
+    <ButtonAdd @clicked="alert">Produit laitier</ButtonAdd>
     <BaseFooter />
   </div>
 </template>
@@ -13,7 +13,7 @@ import BaseHeader from '@/components/base/BaseHeader';
 import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import ButtonRouter from '@/components/buttons/ButtonRouter';
-import ButtonMain from '@/components/buttons/ButtonMain';
+import ButtonAdd from '@/components/buttons/ButtonAdd';
 
 export default {
   name: 'Home',
@@ -22,7 +22,7 @@ export default {
     BaseFooter,
     Heading,
     ButtonRouter,
-    ButtonMain
+    ButtonAdd
   },
   methods: {
     alert() {
