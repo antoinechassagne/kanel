@@ -9,7 +9,7 @@
 export default {
   name: 'ButtonRouter',
   props: {
-    path: {
+    name: {
       type: String,
       required: true
     },
@@ -20,7 +20,7 @@ export default {
   computed: {
     route() {
       return {
-        path: this.path,
+        name: this.name,
         params: this.params
       };
     }
