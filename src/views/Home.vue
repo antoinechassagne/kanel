@@ -1,17 +1,17 @@
 <template>
   <div>
-    <BaseHeader />
-    <Heading level="1">Kanel</Heading>
-    <ButtonRouter path="/menus">Commencer</ButtonRouter>
-    <ButtonAdd @add="alert">Produit laitier</ButtonAdd>
-    <ButtonRemove @remove="alert">Remove</ButtonRemove>
-    <List label="Demo liste" :items="items">
+    <base-header />
+    <heading level="1">Kanel</heading>
+    <button-router path="/menus">Commencer</button-router>
+    <button-add @add="alert">Produit laitier</button-add>
+    <button-remove @remove="alert">Remove</button-remove>
+    <list label="Demo liste" :items="items">
       <template v-slot:default="{ item }">
         <p>{{ item.label }}</p>
         <p>{{ item.value }}</p>
       </template>
-    </List>
-    <BaseFooter />
+    </list>
+    <base-footer />
   </div>
 </template>
 
