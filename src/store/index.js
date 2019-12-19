@@ -1,20 +1,33 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import recommandations from '../settings/recommandations';
 
 Vue.use(Vuex);
 
 const state = {
-  recommandations,
-  weekMeals: {}
+  weekMeals: {},
+  results: {}
 };
 
 const getters = {
-  recommandations: state => state.recommandations,
-  weekMeals: state => state.weekMeals
+  weekMeals: state => state.weekMeals,
+  results: state => state.results
 };
 
-const mutations = {};
-const actions = {};
+const mutations = {
+  SET_WEEK_MEALS: (state, weekMeals) => {
+    state.weekMeals = weekMeals;
+  },
+  SET_RESULTS: (state, results) => {
+    state.results = results;
+  }
+};
+
+const actions = {
+  updateDayMeals(context, content) {
+    const weekMeaks = state.weekMeals;
+    weekMeaks[content.day] = content.meals;
+    context.commit('SET_WEEK_MEALS', weekMeaks);
+  }
+};
 
 export default new Vuex.Store({ state, getters, mutations, actions });

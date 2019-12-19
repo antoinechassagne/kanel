@@ -19,12 +19,12 @@ const routes = [
     component: Home
   },
   {
-    path: '/semaine',
+    path: '/week',
     name: 'Week',
     component: Week
   },
   {
-    path: '/jour/:day/repas',
+    path: '/:day/meals',
     name: 'Meals',
     component: Meals
   }
