@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import HappyMeals from '../services/HappyMeals';
+import recommandations from '../settings/recommandations';
+import pattern from '../settings/pattern';
 
 Vue.use(Vuex);
 
@@ -24,9 +27,14 @@ const mutations = {
 
 const actions = {
   updateDayMeals(context, content) {
-    const weekMeaks = state.weekMeals;
-    weekMeaks[content.day] = content.meals;
-    context.commit('SET_WEEK_MEALS', weekMeaks);
+    const { weekMeals } = state;
+    weekMeals[content.day] = content.meals;
+    context.commit('SET_WEEK_MEALS', weekMeals);
+  },
+  generateResults(context) {
+    const happyMeals = new HappyMeals(recommandations, pattern, state.weekMeals);
+    happyMeals.provideMeals();
+    context.commit('SET_RESULTS', happyMeals.weekMap);
   }
 };
 
