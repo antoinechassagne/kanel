@@ -75,7 +75,6 @@ export default {
         meals: this.meals
       });
       this.$router.push('/week');
-      // @TODO : Router : redirect to Week
     },
     addFoodGroup(item, mealType) {
       const index = this.meals[mealType].findIndex(meal => meal.id === item.id);
