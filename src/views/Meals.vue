@@ -2,13 +2,20 @@
   <div class="page-meals">
     <base-header />
     <heading level="1">Entrez vos repas</heading>
-    <button-add
-      v-for="foodGroup in foodGroups"
-      :key="foodGroup.id"
-      @click="addFoodGroup(foodGroup)"
-    >
-      {{ foodGroup.name }}
-    </button-add>
+    <tabs :tabs="tabs">
+      <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
+      <template v-slot:tab-content="{ currentTab }">
+        <div>
+          <button-add
+            v-for="foodGroup in foodGroups"
+            :key="foodGroup.id"
+            @click="addFoodGroup(foodGroup, currentTab.value)"
+          >
+            {{ foodGroup.name }}
+          </button-add>
+        </div>
+      </template>
+    </tabs>
     <button-add :actionButton="true" @click="storeDayMeals">
       Valider
     </button-add>
@@ -22,6 +29,7 @@ import foodGroups from '@/settings/recommandations.js';
 import BaseHeader from '@/components/base/BaseHeader';
 import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
+import Tabs from '@/components/tabs/Tabs';
 import ButtonAdd from '@/components/buttons/ButtonAdd';
 
 export default {
@@ -30,15 +38,22 @@ export default {
     BaseHeader,
     BaseFooter,
     Heading,
+    Tabs,
     ButtonAdd
   },
   data() {
     return {
+      tabs: [
+        { id: 1, title: 'Petit déjeuner', value: 0 },
+        { id: 2, title: 'Déjeuner', value: 1 },
+        { id: 3, title: 'Goûter', value: 2 },
+        { id: 4, title: 'Dîner', value: 3 }
+      ],
       meals: {
         0: [],
         1: [],
-        3: [],
-        4: []
+        2: [],
+        3: []
       }
     };
   },
@@ -60,13 +75,14 @@ export default {
         meals: this.meals
       });
     },
-    addFoodGroup(item) {
-      const index = this.meals[0].findIndex(meal => meal.id === item.id);
+    addFoodGroup(item, mealType) {
+      console.log(mealType);
+      const index = this.meals[mealType].findIndex(meal => meal.id === item.id);
       if (index !== -1) {
-        this.meals[0][index].portions++;
+        this.meals[mealType][index].portions++;
         return;
       }
-      this.meals[0].push({
+      this.meals[mealType].push({
         id: item.id,
         name: item.name,
         portions: 1

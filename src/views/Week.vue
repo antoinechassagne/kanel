@@ -5,7 +5,6 @@
     <tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
-        Contenu du tab {{ currentTab.id }}
         <button-router name="Meals" :params="{ day: currentTab.value }">
           Ajouter des repas
         </button-router>
