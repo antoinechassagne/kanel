@@ -6,8 +6,8 @@
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         Contenu du tab {{ currentTab.id }}
-        <button-router name="Meals" :params="{ day: currentTab.id }"
-          >Ajouter des repas
+        <button-router name="Meals" :params="{ day: currentTab.value }">
+          Ajouter des repas
         </button-router>
       </template>
     </tabs>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 import BaseHeader from '@/components/base/BaseHeader';
 import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
@@ -34,15 +35,25 @@ export default {
   data() {
     return {
       tabs: [
-        { id: 1, title: 'Lundi' },
-        { id: 2, title: 'Mardi' },
-        { id: 3, title: 'Mercredi' },
-        { id: 4, title: 'Jeudi' },
-        { id: 5, title: 'Vendredi' },
-        { id: 6, title: 'Samedi' },
-        { id: 7, title: 'Dimanche' }
+        { id: 1, title: 'Lundi', value: 'monday' },
+        { id: 2, title: 'Mardi', value: 'thuesday' },
+        { id: 3, title: 'Mercredi', value: 'wednesday' },
+        { id: 4, title: 'Jeudi', value: 'thursday' },
+        { id: 5, title: 'Vendredi', value: 'friday' },
+        { id: 6, title: 'Samedi', value: 'saturday' },
+        { id: 7, title: 'Dimanche', value: 'sunday' }
       ]
     };
+  },
+  computed: {
+    ...mapGetters({
+      weekMeals: 'weekMeals'
+    })
+  },
+  methods: {
+    ...mapActions({
+      updateDayMeals: 'updateDayMeals'
+    })
   }
 };
 </script>
