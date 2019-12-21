@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import HappyMeals from '../services/HappyMeals';
 import recommandations from '../settings/recommandations';
 import pattern from '../settings/pattern';
@@ -38,4 +39,14 @@ const actions = {
   }
 };
 
-export default new Vuex.Store({ state, getters, mutations, actions });
+export default new Vuex.Store({
+  state,
+  getters,
+  mutations,
+  actions,
+  plugins: [
+    createPersistedState({
+      key: 'kanel'
+    })
+  ]
+});
