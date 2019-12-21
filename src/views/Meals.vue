@@ -74,9 +74,9 @@ export default {
         day: this.$route.params.day,
         meals: this.meals
       });
+      this.$router.push('/week');
     },
     addFoodGroup(item, mealType) {
-      console.log(mealType);
       const index = this.meals[mealType].findIndex(meal => meal.id === item.id);
       if (index !== -1) {
         this.meals[mealType][index].portions++;
