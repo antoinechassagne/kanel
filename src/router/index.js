@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import ComponentsShowcase from '../views/ComponentsShowcase.vue';
 import Home from '../views/Home.vue';
 import Week from '../views/Week.vue';
 import Meals from '../views/Meals.vue';
@@ -9,11 +8,6 @@ import Synthesis from '../views/Synthesis.vue';
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/showcase',
-    name: 'ComponentsShowcase',
-    component: ComponentsShowcase
-  },
   {
     path: '/',
     name: 'Home',

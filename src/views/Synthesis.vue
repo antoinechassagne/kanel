@@ -1,36 +1,26 @@
 <template>
-  <div class="page-meals">
-    <base-header />
+  <div class="page-synthesis">
     <heading level="1">Synthèse</heading>
-    <div v-for="(day, dayKey) in results" :key="generateUniqueComponentKey()">
-      {{ getDayName(dayKey) }}
-      <div v-for="(period, periodKey) in day" :key="generateUniqueComponentKey()">
-        {{ getPeriodName(periodKey) }}
-        <div
-          v-for="meal in period"
-          :key="generateUniqueComponentKey()"
-        >{{ meal.name }} : {{ meal.portions }}</div>
-      </div>
-    </div>
-    <base-footer />
+    <ul>
+      <li v-for="(day, dayKey) in results" :key="dayKey">
+        <p>{{ getDayName(dayKey) }}</p>
+        <segment-day-meals :day="day" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import generateUniqueComponentKey from '../helpers/functions/generateUniqueComponentKey';
 import getDayName from '../helpers/functions/getDayName';
-import getPeriodName from '../helpers/functions/getPeriodName';
-import BaseHeader from '@/components/base/BaseHeader';
-import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
+import SegmentDayMeals from '@/segments/SegmentDayMeals';
 
 export default {
   name: 'Synthesis',
   components: {
-    BaseHeader,
-    BaseFooter,
-    Heading
+    Heading,
+    SegmentDayMeals
   },
   computed: {
     ...mapGetters({
@@ -38,9 +28,7 @@ export default {
     })
   },
   methods: {
-    generateUniqueComponentKey,
-    getDayName,
-    getPeriodName
+    getDayName
   },
   created() {
     console.log(this.results);

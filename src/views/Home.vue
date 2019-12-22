@@ -1,7 +1,7 @@
 <template>
   <div class="page-home">
     <h1>Kanel</h1>
-    <button-router name="Week">Commencer</button-router>
+    <ButtonRouter name="Week">Commencer</ButtonRouter>
   </div>
 </template>
 
