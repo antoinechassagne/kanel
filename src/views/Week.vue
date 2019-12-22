@@ -2,7 +2,7 @@
   <div class="page-week">
     <base-header />
     <heading level="1">Les menus de vos enfants pour toute la semaine</heading>
-    <button v-on:click="generateResults">Générer</button>
+    <button v-on:click="generation">Générer</button>
     <tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
@@ -54,7 +54,11 @@ export default {
     ...mapActions({
       updateDayMeals: 'updateDayMeals',
       generateResults: 'generateResults'
-    })
+    }),
+    generation() {
+      this.generateResults();
+      this.$router.push('/synthesis');
+    }
   }
 };
 </script>

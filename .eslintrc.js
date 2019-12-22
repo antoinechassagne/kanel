@@ -17,7 +17,11 @@ module.exports = {
     'vue/require-prop-type-constructor': 0,
     'import/extensions': 0,
     'no-shadow': 0,
-    'object-curly-newline': 0
+    'object-curly-newline': 0,
+    'operator-linebreak': 0,
+    'implicit-arrow-linebreak': 0,
+    'arrow-parens': 0,
+    'vue/valid-v-for': 0
   },
   parserOptions: {
     parser: 'babel-eslint'

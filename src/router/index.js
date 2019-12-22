@@ -4,6 +4,7 @@ import ComponentsShowcase from '../views/ComponentsShowcase.vue';
 import Home from '../views/Home.vue';
 import Week from '../views/Week.vue';
 import Meals from '../views/Meals.vue';
+import Synthesis from '../views/Synthesis.vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/:day/meals',
     name: 'Meals',
     component: Meals
+  },
+  {
+    path: '/synthesis',
+    name: 'Synthesis',
+    component: Synthesis
   }
 ];
 
