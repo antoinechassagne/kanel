@@ -2,11 +2,14 @@
   <div class="page-meals">
     <base-header />
     <heading level="1">Synthèse</heading>
-    <div v-for="(day, dayName) in results" :key="dayName">
-      {{ getDayName(dayName) }}
-      <div v-for="(period, periodIndex) in day" :key="periodIndex">
-        {{ getPeriodName(periodIndex) }}
-        <div v-for="meal in period" :key="meal.id">{{ meal.name }} : {{ meal.portions }}</div>
+    <div v-for="(day, dayKey) in results" :key="generateUniqueComponentKey()">
+      {{ getDayName(dayKey) }}
+      <div v-for="(period, periodKey) in day" :key="generateUniqueComponentKey()">
+        {{ getPeriodName(periodKey) }}
+        <div
+          v-for="meal in period"
+          :key="generateUniqueComponentKey()"
+        >{{ meal.name }} : {{ meal.portions }}</div>
       </div>
     </div>
     <base-footer />
