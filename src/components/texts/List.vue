@@ -2,7 +2,7 @@
   <div>
     <h3>{{ label }}</h3>
     <ul>
-      <li v-for="(item, index) in items" :key="index">
+      <li v-for="item in items" :key="generateUniqueComponentKey()">
         <slot v-bind:item="item"></slot>
       </li>
     </ul>
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import generateUniqueComponentKey from '@/helpers/functions/generateUniqueComponentKey';
+
 export default {
   name: 'List',
   props: {
@@ -21,6 +23,9 @@ export default {
       type: Array,
       required: true
     }
+  },
+  methods: {
+    generateUniqueComponentKey
   }
 };
 </script>

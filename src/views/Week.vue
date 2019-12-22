@@ -1,17 +1,20 @@
 <template>
   <div class="page-week">
-    <base-header />
-    <heading level="1">Les menus de vos enfants pour toute la semaine</heading>
+    <BaseHeader />
+    <heading level="1">Les menus de la semaine</heading>
     <button v-on:click="generation">Générer</button>
-    <tabs :tabs="tabs">
+    <Tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
-        <button-router name="Meals" :params="{ day: currentTab.value }">
-          Ajouter des repas
-        </button-router>
+        <div>
+          <SegmentDayMeals :day="weekMeals[currentTab.value]" />
+          <ButtonRouter name="Meals" :params="{ day: currentTab.value }">
+            Ajouter des repas
+          </ButtonRouter>
+        </div>
       </template>
-    </tabs>
-    <base-footer />
+    </Tabs>
+    <BaseFooter />
   </div>
 </template>
 
@@ -22,6 +25,7 @@ import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
 import ButtonRouter from '@/components/buttons/ButtonRouter';
+import SegmentDayMeals from '@/segments/SegmentDayMeals';
 
 export default {
   name: 'Week',
@@ -30,7 +34,8 @@ export default {
     BaseFooter,
     Heading,
     Tabs,
-    ButtonRouter
+    ButtonRouter,
+    SegmentDayMeals
   },
   data() {
     return {

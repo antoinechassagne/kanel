@@ -1,36 +1,38 @@
 <template>
   <div class="page-meals">
-    <base-header />
-    <heading level="1">Entrez vos repas</heading>
-    <tabs :tabs="tabs">
+    <BaseHeader />
+    <Heading level="1">Entrez vos repas</Heading>
+    <Tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <div>
-          <button-add
+          <ButtonAdd
             v-for="foodGroup in foodGroups"
             :key="foodGroup.id"
             @click="addFoodGroup(foodGroup, currentTab.value)"
           >
             {{ foodGroup.name }}
-          </button-add>
+          </ButtonAdd>
+          <Heading level="2">Repas du jour</Heading>
+          <SegmentDayMeals :day="meals" />
         </div>
       </template>
-    </tabs>
-    <button-add :actionButton="true" @click="storeDayMeals">
-      Valider
-    </button-add>
-    <base-footer />
+    </Tabs>
+    <ButtonAdd :actionButton="true" @click="storeDayMeals">Valider</ButtonAdd>
+    <BaseFooter />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import getDayName from '../helpers/functions/getDayName';
 import foodGroups from '@/settings/recommandations.js';
 import BaseHeader from '@/components/base/BaseHeader';
 import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
 import ButtonAdd from '@/components/buttons/ButtonAdd';
+import SegmentDayMeals from '@/segments/SegmentDayMeals';
 
 export default {
   name: 'Meals',
@@ -39,7 +41,8 @@ export default {
     BaseFooter,
     Heading,
     Tabs,
-    ButtonAdd
+    ButtonAdd,
+    SegmentDayMeals
   },
   data() {
     return {
@@ -63,6 +66,9 @@ export default {
     }),
     foodGroups() {
       return foodGroups;
+    },
+    dayName() {
+      return getDayName(this.$route.params.day);
     }
   },
   methods: {
