@@ -1,42 +1,38 @@
 <template>
   <div class="page-meals">
-    <base-header />
-    <heading level="1">Entrez vos repas</heading>
-    <tabs :tabs="tabs">
+    <BaseHeader />
+    <Heading level="1">Entrez vos repas</Heading>
+    <Tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <div>
-          <button-add
+          <ButtonAdd
             v-for="foodGroup in foodGroups"
             :key="foodGroup.id"
             @click="addFoodGroup(foodGroup, currentTab.value)"
-          >{{ foodGroup.name }}</button-add>
-          <h2>Repas du jour</h2>
-          <div v-for="(period, periodKey) in meals" :key="generateUniqueComponentKey()">
-            <List :label="getPeriodName(periodKey)" :items="period">
-              <template v-slot:default="{ item }">{{ item.name }} : {{ item.portions }}</template>
-            </List>
-          </div>
+          >
+            {{ foodGroup.name }}
+          </ButtonAdd>
+          <Heading level="2">Repas du jour</Heading>
+          <SegmentDayMeals :day="meals" />
         </div>
       </template>
-    </tabs>
-    <button-add :actionButton="true" @click="storeDayMeals">Valider</button-add>
-    <base-footer />
+    </Tabs>
+    <ButtonAdd :actionButton="true" @click="storeDayMeals">Valider</ButtonAdd>
+    <BaseFooter />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import generateUniqueComponentKey from '../helpers/functions/generateUniqueComponentKey';
 import getDayName from '../helpers/functions/getDayName';
-import getPeriodName from '../helpers/functions/getPeriodName';
 import foodGroups from '@/settings/recommandations.js';
 import BaseHeader from '@/components/base/BaseHeader';
 import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
 import ButtonAdd from '@/components/buttons/ButtonAdd';
-import List from '@/components/texts/List';
+import SegmentDayMeals from '@/segments/SegmentDayMeals';
 
 export default {
   name: 'Meals',
@@ -46,7 +42,7 @@ export default {
     Heading,
     Tabs,
     ButtonAdd,
-    List
+    SegmentDayMeals
   },
   data() {
     return {
@@ -76,8 +72,6 @@ export default {
     }
   },
   methods: {
-    generateUniqueComponentKey,
-    getPeriodName,
     ...mapActions({
       updateDayMeals: 'updateDayMeals'
     }),
