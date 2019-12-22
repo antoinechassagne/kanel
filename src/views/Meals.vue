@@ -2,17 +2,11 @@
   <div class="page-meals">
     <BaseHeader />
     <Heading level="1">Entrez vos repas</Heading>
-    <Tabs :tabs="tabs">
+    <Tabs :tabs="tabs" @tabClicked="changeCurrentPeriod">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <div>
-          <ButtonAdd
-            v-for="foodGroup in foodGroups"
-            :key="foodGroup.id"
-            @click="addFoodGroup(foodGroup, currentTab.value)"
-          >
-            {{ foodGroup.name }}
-          </ButtonAdd>
+          <SegmentFoodGroupButtons @incrementPortion="updateFoodGroupPortions" />
           <Heading level="2">Repas du jour</Heading>
           <SegmentDayMeals :day="meals" />
         </div>
@@ -26,12 +20,12 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import getDayName from '../helpers/functions/getDayName';
-import foodGroups from '@/settings/recommandations.js';
 import BaseHeader from '@/components/base/BaseHeader';
 import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
 import ButtonAdd from '@/components/buttons/ButtonAdd';
+import SegmentFoodGroupButtons from '@/segments/SegmentFoodGroupButtons';
 import SegmentDayMeals from '@/segments/SegmentDayMeals';
 
 export default {
@@ -42,6 +36,7 @@ export default {
     Heading,
     Tabs,
     ButtonAdd,
+    SegmentFoodGroupButtons,
     SegmentDayMeals
   },
   data() {
@@ -57,16 +52,14 @@ export default {
         1: [],
         2: [],
         3: []
-      }
+      },
+      currentPeriod: 0
     };
   },
   computed: {
     ...mapGetters({
       weekMeals: 'weekMeals'
     }),
-    foodGroups() {
-      return foodGroups;
-    },
     dayName() {
       return getDayName(this.$route.params.day);
     }
@@ -75,6 +68,9 @@ export default {
     ...mapActions({
       updateDayMeals: 'updateDayMeals'
     }),
+    changeCurrentPeriod(currentTab) {
+      this.currentPeriod = currentTab.value;
+    },
     storeDayMeals() {
       this.updateDayMeals({
         day: this.$route.params.day,
@@ -82,15 +78,16 @@ export default {
       });
       this.$router.push('/week');
     },
-    addFoodGroup(item, mealType) {
-      const index = this.meals[mealType].findIndex(meal => meal.id === item.id);
+    updateFoodGroupPortions(foodGroup) {
+      const period = this.currentPeriod;
+      const index = this.meals[period].findIndex(meal => meal.id === foodGroup.id);
       if (index !== -1) {
-        this.meals[mealType][index].portions++;
+        this.meals[period][index].portions++;
         return;
       }
-      this.meals[mealType].push({
-        id: item.id,
-        name: item.name,
+      this.meals[period].push({
+        id: foodGroup.id,
+        name: foodGroup.name,
         portions: 1
       });
     }
