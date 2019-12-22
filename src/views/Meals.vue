@@ -1,5 +1,5 @@
 <template>
-  <div class="page-meals">
+  <div class="page">
     <heading level="1">Ajoutez vos repas</heading>
     <tabs :tabs="tabs" @tabClicked="changeCurrentPeriod">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>

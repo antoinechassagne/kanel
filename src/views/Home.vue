@@ -1,5 +1,5 @@
 <template>
-  <div class="page-home">
+  <div class="page">
     <h1>Kanel</h1>
     <ButtonRouter name="Week">Commencer</ButtonRouter>
   </div>

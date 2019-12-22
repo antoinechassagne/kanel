@@ -1,5 +1,5 @@
 <template>
-  <div class="page-week">
+  <div class="page">
     <heading level="1">Les menus de la semaine</heading>
     <button-add :actionButton="true" @click="generateSynthesis">Générer</button-add>
     <tabs :tabs="tabs">
