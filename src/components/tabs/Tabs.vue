@@ -7,7 +7,10 @@
           :key="tab.id"
           :class="getActiveClass(tab.id)"
           class="tab"
-          @click="goToTab(tab.id)"
+          @click="
+            goToTab(tab.id);
+            emitCurrentTab();
+          "
         >
           <slot name="tab-navigation" :tab="tab" />
         </li>
@@ -26,7 +29,7 @@ export default {
   name: 'Tabs',
   data() {
     return {
-      currentTab: this.tabs[0]
+      currentTab: {}
     };
   },
   props: {
@@ -41,6 +44,9 @@ export default {
     },
     getActiveClass(tabId) {
       return this.currentTab.id === tabId ? 'tab--active' : '';
+    },
+    emitCurrentTab() {
+      this.$emit('tabClicked', this.currentTab);
     }
   },
   created() {
