@@ -1,13 +1,13 @@
 <template>
   <ul>
     <li>
-      <ButtonAdd
+      <button-add
         v-for="foodGroup in foodGroups"
         :key="foodGroup.id"
         @click="incrementPortion(foodGroup)"
       >
         {{ foodGroup.name }}
-      </ButtonAdd>
+      </button-add>
     </li>
   </ul>
 </template>

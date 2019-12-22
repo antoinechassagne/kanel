@@ -8,7 +8,7 @@ const getDayName = day => {
   switch (day) {
     case 'monday':
       return 'Lundi';
-    case 'thuesday':
+    case 'tuesday':
       return 'Mardi';
     case 'wednesday':
       return 'Mercredi';

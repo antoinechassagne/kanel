@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <ul v-for="(period, periodKey) in day" :key="generateUniqueComponentKey()">
-      <li v-if="period.length">
-        <List :label="getPeriodName(periodKey)" :items="period">
-          <template v-slot:default="{ item }"> {{ item.name }} {{ item.portions }} </template>
-        </List>
-      </li>
-    </ul>
-  </div>
+  <ul>
+    <li v-for="(period, periodKey) in day" :key="generateUniqueComponentKey()">
+      <list v-if="period.length" :label="getPeriodName(periodKey)" :items="period">
+        <template v-slot:default="{ item }"> {{ item.name }} {{ item.portions }} </template>
+      </list>
+    </li>
+  </ul>
 </template>
 
 <script>
