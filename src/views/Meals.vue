@@ -10,27 +10,33 @@
             v-for="foodGroup in foodGroups"
             :key="foodGroup.id"
             @click="addFoodGroup(foodGroup, currentTab.value)"
-          >
-            {{ foodGroup.name }}
-          </button-add>
+          >{{ foodGroup.name }}</button-add>
+          <h2>Repas du jour</h2>
+          <div v-for="(period, periodKey) in meals" :key="generateUniqueComponentKey()">
+            <List :label="getPeriodName(periodKey)" :items="period">
+              <template v-slot:default="{ item }">{{ item.name }} : {{ item.portions }}</template>
+            </List>
+          </div>
         </div>
       </template>
     </tabs>
-    <button-add :actionButton="true" @click="storeDayMeals">
-      Valider
-    </button-add>
+    <button-add :actionButton="true" @click="storeDayMeals">Valider</button-add>
     <base-footer />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import generateUniqueComponentKey from '../helpers/functions/generateUniqueComponentKey';
+import getDayName from '../helpers/functions/getDayName';
+import getPeriodName from '../helpers/functions/getPeriodName';
 import foodGroups from '@/settings/recommandations.js';
 import BaseHeader from '@/components/base/BaseHeader';
 import BaseFooter from '@/components/base/BaseFooter';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
 import ButtonAdd from '@/components/buttons/ButtonAdd';
+import List from '@/components/texts/List';
 
 export default {
   name: 'Meals',
@@ -39,7 +45,8 @@ export default {
     BaseFooter,
     Heading,
     Tabs,
-    ButtonAdd
+    ButtonAdd,
+    List
   },
   data() {
     return {
@@ -63,9 +70,14 @@ export default {
     }),
     foodGroups() {
       return foodGroups;
+    },
+    dayName() {
+      return getDayName(this.$route.params.day);
     }
   },
   methods: {
+    generateUniqueComponentKey,
+    getPeriodName,
     ...mapActions({
       updateDayMeals: 'updateDayMeals'
     }),
