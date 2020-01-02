@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <heading level="1">Les menus de la semaine</heading>
-    <button-add :actionButton="true" @click="generateSynthesis">Générer</button-add>
+    <button-action type="action" @action="generateSynthesis">Générer</button-action>
     <tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
@@ -19,16 +19,16 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import Heading from '@/components/texts/Heading';
-import ButtonAdd from '@/components/buttons/ButtonAdd';
-import Tabs from '@/components/tabs/Tabs';
+import ButtonAction from '@/components/buttons/ButtonAction';
 import ButtonRouter from '@/components/buttons/ButtonRouter';
+import Tabs from '@/components/tabs/Tabs';
 import SegmentDayMeals from '@/segments/SegmentDayMeals';
 
 export default {
   name: 'Week',
   components: {
     Heading,
-    ButtonAdd,
+    ButtonAction,
     Tabs,
     ButtonRouter,
     SegmentDayMeals
