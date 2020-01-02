@@ -7,7 +7,7 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
   &--action {
-    p {
+    h4 {
       margin-bottom: 20px;
     }
 
@@ -24,8 +24,11 @@
 .card-list {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 -20px;
 
-  & > li {
+  li {
+    margin-left: 20px;
+    margin-right: 20px;
     width: calc(25% - 40px);
 
     @include on-tablet {

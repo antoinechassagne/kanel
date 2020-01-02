@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page container">
     <heading level="1" class="mb--40">Les menus de la semaine</heading>
     <button-action type="action" @action="generateSynthesis" class="mb--20">Générer</button-action>
     <tabs :tabs="tabs">

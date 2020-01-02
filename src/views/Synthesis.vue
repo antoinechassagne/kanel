@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page container">
     <heading level="1" class="mb--40">Synthèse</heading>
     <ul>
       <li v-for="(day, dayKey) in results" :key="dayKey" class="mb--30">

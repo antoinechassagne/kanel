@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page container">
     <heading level="1" class="mb--40">Kanel</heading>
     <ButtonRouter name="Week">Commencer</ButtonRouter>
   </div>
