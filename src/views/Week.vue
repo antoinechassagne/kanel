@@ -1,13 +1,13 @@
 <template>
   <div class="page">
-    <heading level="1">Les menus de la semaine</heading>
-    <button-action type="action" @action="generateSynthesis">Générer</button-action>
+    <heading level="1" class="mb--40">Les menus de la semaine</heading>
+    <button-action type="action" @action="generateSynthesis" class="mb--20">Générer</button-action>
     <tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <section>
           <segment-day-meals :day="weekMeals[currentTab.value]" />
-          <button-router name="Meals" :params="{ day: currentTab.value }">
+          <button-router name="Meals" :params="{ day: currentTab.value }" class="mt--20">
             Ajouter des repas
           </button-router>
         </section>

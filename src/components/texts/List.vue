@@ -1,7 +1,7 @@
 <template>
   <fragment>
-    <h3>{{ label }}</h3>
-    <ul>
+    <h3 class="list__label">{{ label }}</h3>
+    <ul class="list">
       <li v-for="item in items" :key="generateUniqueComponentKey()">
         <slot v-bind:item="item"></slot>
       </li>

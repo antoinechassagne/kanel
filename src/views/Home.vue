@@ -1,16 +1,18 @@
 <template>
   <div class="page">
-    <h1>Kanel</h1>
+    <heading level="1" class="mb--40">Kanel</heading>
     <ButtonRouter name="Week">Commencer</ButtonRouter>
   </div>
 </template>
 
 <script>
+import Heading from '@/components/texts/Heading';
 import ButtonRouter from '@/components/buttons/ButtonRouter';
 
 export default {
   name: 'Home',
   components: {
+    Heading,
     ButtonRouter
   }
 };

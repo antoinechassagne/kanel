@@ -1,6 +1,7 @@
 .card {
   width: 100%;
   padding: 25px;
+  margin: 15px 0;
   border-radius: 25px;
   background: $white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -24,7 +25,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  li {
+  & > li {
     width: calc(25% - 40px);
 
     @include on-tablet {
