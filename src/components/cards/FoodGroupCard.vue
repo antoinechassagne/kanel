@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card card--action">
     <p>{{ foodGroup.name }}</p>
     <button-action type="add" @action="changePortion({ foodGroup, type: 'add' })">
       +

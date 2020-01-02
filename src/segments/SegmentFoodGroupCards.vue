@@ -1,12 +1,7 @@
 <template>
-  <ul>
-    <li>
-      <food-group-card
-        v-for="foodGroup in foodGroups"
-        :key="foodGroup.id"
-        :foodGroup="foodGroup"
-        @changePortion="changePortion"
-      />
+  <ul class="card-list">
+    <li v-for="foodGroup in foodGroups" :key="foodGroup.id">
+      <food-group-card :foodGroup="foodGroup" @changePortion="changePortion" />
     </li>
   </ul>
 </template>
