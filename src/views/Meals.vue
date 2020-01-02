@@ -5,13 +5,13 @@
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <section>
-          <segment-food-group-buttons @incrementPortion="updateFoodGroupPortions" />
+          <segment-food-group-cards @changePortion="updateFoodGroupPortions" />
           <heading level="2">Repas du jour</heading>
           <segment-day-meals :day="meals" />
         </section>
       </template>
     </tabs>
-    <button-add :actionButton="true" @click="storeDayMeals">Valider</button-add>
+    <button-action type="action" @action="storeDayMeals">Valider</button-action>
   </div>
 </template>
 
@@ -20,17 +20,17 @@ import { mapGetters, mapActions } from 'vuex';
 import getDayName from '@/helpers/functions/getDayName';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
-import SegmentFoodGroupButtons from '@/segments/SegmentFoodGroupButtons';
+import SegmentFoodGroupCards from '@/segments/SegmentFoodGroupCards';
 import SegmentDayMeals from '@/segments/SegmentDayMeals';
-import ButtonAdd from '@/components/buttons/ButtonAdd';
+import ButtonAction from '@/components/buttons/ButtonAction';
 
 export default {
   name: 'Meals',
   components: {
     Heading,
     Tabs,
-    ButtonAdd,
-    SegmentFoodGroupButtons,
+    ButtonAction,
+    SegmentFoodGroupCards,
     SegmentDayMeals
   },
   data() {
@@ -72,16 +72,29 @@ export default {
       });
       this.$router.push('/week');
     },
-    updateFoodGroupPortions(foodGroup) {
+    updateFoodGroupPortions(mutation) {
       const period = this.currentPeriod;
-      const index = this.meals[period].findIndex(meal => meal.id === foodGroup.id);
+      const index = this.meals[period].findIndex(meal => meal.id === mutation.foodGroup.id);
+
+      // Food group is already in state
       if (index !== -1) {
-        this.meals[period][index].portions++;
+        // Prevent decrementing a food group with 0 portion
+        if (this.meals[period][index].portions === 0 && mutation.type === 'remove') return;
+
+        // Increment/decrement
+        mutation.type === 'add'
+          ? this.meals[period][index].portions++
+          : this.meals[period][index].portions--;
         return;
       }
+
+      // Prevent decrementing a food group that isn't in the state yet
+      if (mutation.type === 'remove') return;
+
+      // Add food group for the first time with 1 portion
       this.meals[period].push({
-        id: foodGroup.id,
-        name: foodGroup.name,
+        id: mutation.foodGroup.id,
+        name: mutation.foodGroup.name,
         portions: 1
       });
     }

@@ -1,25 +1,24 @@
 <template>
   <ul>
     <li>
-      <button-add
+      <food-group-card
         v-for="foodGroup in foodGroups"
         :key="foodGroup.id"
-        @click="incrementPortion(foodGroup)"
-      >
-        {{ foodGroup.name }}
-      </button-add>
+        :foodGroup="foodGroup"
+        @changePortion="changePortion"
+      />
     </li>
   </ul>
 </template>
 
 <script>
 import foodGroups from '@/settings/recommandations.js';
-import ButtonAdd from '@/components/buttons/ButtonAdd';
+import FoodGroupCard from '@/components/cards/FoodGroupCard';
 
 export default {
-  name: 'SegmentFoodGroupButtons',
+  name: 'SegmentFoodGroupCards',
   components: {
-    ButtonAdd
+    FoodGroupCard
   },
   computed: {
     foodGroups() {
@@ -27,8 +26,8 @@ export default {
     }
   },
   methods: {
-    incrementPortion(foodGroup) {
-      this.$emit('incrementPortion', foodGroup);
+    changePortion(value) {
+      this.$emit('changePortion', value);
     }
   }
 };
