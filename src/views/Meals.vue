@@ -1,17 +1,17 @@
 <template>
-  <div class="page">
-    <heading level="1">Ajoutez vos repas</heading>
+  <div class="page container">
+    <heading level="1" class="mb--40">Ajoutez vos repas</heading>
     <tabs :tabs="tabs" @tabClicked="changeCurrentPeriod">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <section>
-          <segment-food-group-cards @changePortion="updateFoodGroupPortions" />
-          <heading level="2">Repas du jour</heading>
+          <segment-food-group-cards @changePortion="updateFoodGroupPortions" class="mb--40" />
+          <heading level="2" class="mb--20">Repas du jour</heading>
           <segment-day-meals :day="meals" />
         </section>
       </template>
     </tabs>
-    <button-action type="action" @action="storeDayMeals">Valider</button-action>
+    <button-action type="action" @action="storeDayMeals" class="mt--20">Valider</button-action>
   </div>
 </template>
 

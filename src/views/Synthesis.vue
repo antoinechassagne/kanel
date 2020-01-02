@@ -1,9 +1,9 @@
 <template>
-  <div class="page">
-    <heading level="1">Synthèse</heading>
+  <div class="page container">
+    <heading level="1" class="mb--40">Synthèse</heading>
     <ul>
-      <li v-for="(day, dayKey) in results" :key="dayKey">
-        <p>{{ getDayName(dayKey) }}</p>
+      <li v-for="(day, dayKey) in results" :key="dayKey" class="mb--30">
+        <h2 class="mb--10">{{ getDayName(dayKey) }}</h2>
         <segment-day-meals :day="day" />
       </li>
     </ul>

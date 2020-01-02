@@ -1,6 +1,6 @@
 <template>
   <div class="tabs">
-    <nav class="tabs__navigation">
+    <nav class="tabs__navigation mb--20">
       <ul>
         <li
           v-for="tab in tabs"

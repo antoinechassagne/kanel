@@ -2,24 +2,31 @@
   &__navigation {
     ul {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       width: 100%;
     }
   }
 
-  &__content {
-  }
-
   .tab {
     width: calc(100% / 7);
-    margin: 0 10px;
-    background: lightgrey;
     padding: 10px;
     text-align: center;
     cursor: pointer;
+    border: solid 1px lightgrey;
+
+    &:first-child {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+
+    &:last-child {
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
 
     &--active {
-      background: gray;
+      background: lightgrey;
+      color: white;
     }
   }
 }

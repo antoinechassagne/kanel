@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <p>{{ foodGroup.name }}</p>
+  <div class="card card--action">
+    <h4>{{ foodGroup.name }}</h4>
     <button-action type="add" @action="changePortion({ foodGroup, type: 'add' })">
       +
     </button-action>
