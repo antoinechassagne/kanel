@@ -19,6 +19,12 @@
       margin-left: 20px;
     }
   }
+
+  &__number {
+    display: block;
+    font-size: size(40);
+    text-align: center;
+  }
 }
 
 .card-list {
