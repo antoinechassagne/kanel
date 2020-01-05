@@ -5,9 +5,11 @@
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <section>
-          <segment-food-group-cards @changePortion="updateFoodGroupPortions" class="mb--40" />
-          <heading level="2" class="mb--20">Repas du jour</heading>
-          <segment-day-meals :day="meals" />
+          <segment-food-group-cards
+            @changePortion="updateFoodGroupPortions"
+            :day="meals[currentTab.value]"
+            class="mb--40"
+          />
         </section>
       </template>
     </tabs>
@@ -21,7 +23,6 @@ import getDayName from '@/helpers/functions/getDayName';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
 import SegmentFoodGroupCards from '@/segments/SegmentFoodGroupCards';
-import SegmentDayMeals from '@/segments/SegmentDayMeals';
 import ButtonAction from '@/components/buttons/ButtonAction';
 
 export default {
@@ -30,8 +31,7 @@ export default {
     Heading,
     Tabs,
     ButtonAction,
-    SegmentFoodGroupCards,
-    SegmentDayMeals
+    SegmentFoodGroupCards
   },
   data() {
     return {

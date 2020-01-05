@@ -3,7 +3,9 @@
     <li v-for="(period, periodKey) in cleanDay" :key="generateUniqueComponentKey()" class="card">
       <list v-if="period.length" :label="getPeriodName(periodKey)" :items="period">
         <template v-slot:default="{ item }">
-          <span>{{ item.name }}</span> <span class="font-medium">{{ item.portions }}</span>
+          <template v-if="item.portions !== 0">
+            <span>{{ item.name }}</span> <span class="font-medium">{{ item.portions }}</span>
+          </template>
         </template>
       </list>
     </li>

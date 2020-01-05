@@ -1,7 +1,11 @@
 <template>
   <ul class="card-list">
     <li v-for="foodGroup in foodGroups" :key="foodGroup.id">
-      <food-group-card :foodGroup="foodGroup" @changePortion="changePortion" />
+      <food-group-card
+        :foodGroup="foodGroup"
+        :portions="getCurrentPortions(foodGroup)"
+        @changePortion="changePortion"
+      />
     </li>
   </ul>
 </template>
@@ -15,6 +19,12 @@ export default {
   components: {
     FoodGroupCard
   },
+  props: {
+    day: {
+      type: Array,
+      required: true
+    }
+  },
   computed: {
     foodGroups() {
       return foodGroups;
@@ -23,6 +33,11 @@ export default {
   methods: {
     changePortion(value) {
       this.$emit('changePortion', value);
+    },
+    getCurrentPortions(foodGroup) {
+      const meal = this.day.find(meal => meal.id === foodGroup.id);
+      if (meal) return meal.portions;
+      return 0;
     }
   }
 };
