@@ -9,10 +9,10 @@
     </ul>
     <template v-else>
       <p class="mb--30">
-        Vous n'avez pas encore généré de recommandation. Saisissez vos menus de la semaine puis
+        Vous n'avez pas encore généré de recommandation. Saisissez vos repas de la semaine puis
         cliquez sur "Générer une recommandation".
       </p>
-      <button-router name="Week">Saisir les menus</button-router>
+      <button-router name="Week">Ajouter des repas</button-router>
     </template>
   </div>
 </template>

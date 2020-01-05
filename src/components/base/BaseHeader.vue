@@ -3,7 +3,7 @@
     <nav>
       <ul class="header__menu">
         <li><router-link to="/" class="header__title">KANEL</router-link></li>
-        <li><router-link to="/week">Menus de la semaine</router-link></li>
+        <li><router-link to="/week">Repas de la semaine</router-link></li>
         <li><router-link to="/synthesis">Recommandation</router-link></li>
       </ul>
     </nav>
