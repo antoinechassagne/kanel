@@ -16,7 +16,7 @@
         </li>
       </ul>
     </nav>
-    <main class="tab__content">
+    <main class="tabs__content">
       <keep-alive>
         <slot name="tab-content" :currentTab="currentTab" />
       </keep-alive>

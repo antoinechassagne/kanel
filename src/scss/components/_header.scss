@@ -1,6 +1,7 @@
 .header {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -15,6 +16,12 @@
   &__menu {
     display: flex;
     flex-wrap: wrap;
+
+    li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
     li a {
       text-decoration: none;

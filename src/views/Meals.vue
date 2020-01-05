@@ -1,24 +1,27 @@
 <template>
   <div class="page container">
-    <heading level="1" class="mb--40">Ajoutez vos repas</heading>
+    <heading level="1" class="mb--40">Ajoutez vos repas du {{ dayName.toLowerCase() }}</heading>
     <tabs :tabs="tabs" @tabClicked="changeCurrentPeriod">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
-        <section>
+        <fragment>
           <segment-food-group-cards
             @changePortion="updateFoodGroupPortions"
             :day="meals[currentTab.value]"
             class="mb--40"
           />
-        </section>
+          <button-action type="action" @action="storeDayMeals" class="mt--50"
+            >Valider</button-action
+          >
+        </fragment>
       </template>
     </tabs>
-    <button-action type="action" @action="storeDayMeals" class="mt--20">Valider</button-action>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { Fragment } from 'vue-fragment';
 import getDayName from '@/helpers/functions/getDayName';
 import Heading from '@/components/texts/Heading';
 import Tabs from '@/components/tabs/Tabs';
@@ -28,6 +31,7 @@ import ButtonAction from '@/components/buttons/ButtonAction';
 export default {
   name: 'Meals',
   components: {
+    Fragment,
     Heading,
     Tabs,
     ButtonAction,
