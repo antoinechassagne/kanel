@@ -1,16 +1,15 @@
 <template>
   <div class="page container">
-    <heading level="1" class="mb--40">Les menus de la semaine</heading>
-    <button-action type="action" @action="generateSynthesis" class="mb--20">Générer</button-action>
+    <heading level="1" class="mb--40">Vos menus de la semaine</heading>
     <tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
-        <section>
+        <fragment>
           <segment-day-meals :day="weekMeals[currentTab.value]" />
           <button-router name="Meals" :params="{ day: currentTab.value }" class="mt--20">
             Ajouter des repas
           </button-router>
-        </section>
+        </fragment>
       </template>
     </tabs>
   </div>
@@ -18,8 +17,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { Fragment } from 'vue-fragment';
 import Heading from '@/components/texts/Heading';
-import ButtonAction from '@/components/buttons/ButtonAction';
 import ButtonRouter from '@/components/buttons/ButtonRouter';
 import Tabs from '@/components/tabs/Tabs';
 import SegmentDayMeals from '@/segments/SegmentDayMeals';
@@ -27,8 +26,8 @@ import SegmentDayMeals from '@/segments/SegmentDayMeals';
 export default {
   name: 'Week',
   components: {
+    Fragment,
     Heading,
-    ButtonAction,
     Tabs,
     ButtonRouter,
     SegmentDayMeals

@@ -1,7 +1,7 @@
 <template>
   <div class="page container">
     <heading level="1" class="mb--40">Kanel</heading>
-    <ButtonRouter name="Week">Commencer</ButtonRouter>
+    <button-router name="Week">Commencer</button-router>
   </div>
 </template>
 
