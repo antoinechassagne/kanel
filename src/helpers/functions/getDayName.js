@@ -14,7 +14,7 @@ const getDayName = day => {
       return 'Mercredi';
     case 'thursday':
       return 'Jeudi';
-    case 'Friday':
+    case 'friday':
       return 'Vendredi';
     case 'saturday':
       return 'Samedi';
