@@ -1,13 +1,13 @@
 <template>
   <div class="page container">
-    <heading level="1" class="mb--40">Vos menus de la semaine</heading>
+    <heading level="1" class="mb--40">Vos repas de la semaine</heading>
     <tabs :tabs="tabs">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
         <fragment>
           <segment-day-meals :day="weekMeals[currentTab.value]" />
-          <button-router name="Meals" :params="{ day: currentTab.value }" class="mt--20">
-            Ajouter des repas
+          <button-router name="Meals" :params="{ day: currentTab.value }" class="mt--50">
+            {{ actionButtonLabel(currentTab.value) }}
           </button-router>
         </fragment>
       </template>
@@ -58,6 +58,12 @@ export default {
     generateSynthesis() {
       this.generateResults();
       this.$router.push('/synthesis');
+    },
+    actionButtonLabel(value) {
+      if (this.weekMeals[value] && Object.keys(this.weekMeals[value]).length) {
+        return 'Modifier les repas';
+      }
+      return 'Ajouter des repas';
     }
   }
 };

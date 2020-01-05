@@ -1,6 +1,6 @@
 <template>
   <div class="page container">
-    <heading level="1" class="mb--40">Ajoutez vos repas</heading>
+    <heading level="1" class="mb--40">Ajoutez vos repas du {{ dayName.toLowerCase() }}</heading>
     <tabs :tabs="tabs" @tabClicked="changeCurrentPeriod">
       <template v-slot:tab-navigation="{ tab }">{{ tab.title }}</template>
       <template v-slot:tab-content="{ currentTab }">
@@ -10,10 +10,12 @@
             :day="meals[currentTab.value]"
             class="mb--40"
           />
+          <button-action type="action" @action="storeDayMeals" class="mt--50"
+            >Valider</button-action
+          >
         </fragment>
       </template>
     </tabs>
-    <button-action type="action" @action="storeDayMeals" class="mt--20">Valider</button-action>
   </div>
 </template>
 
