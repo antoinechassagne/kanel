@@ -2,7 +2,6 @@
   &__navigation {
     ul {
       display: flex;
-      justify-content: center;
       width: 100%;
       flex-wrap: wrap;
     }
@@ -14,7 +13,7 @@
 
   .tab {
     width: calc((86%) / 7);
-    height: 10vh;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,6 +37,15 @@
       box-shadow: 0 1px 4px rgba(97, 123, 227, 0.6);
       -moz-box-shadow: 0 1px 4px rgba(97, 123, 227, 0.6);
       -webkit-box-shadow: 0 1px 4px rgba(97, 123, 227, 0.6);
+    }
+
+    @include on-tablet {
+      width: calc(94% / 3);
+      height: 50px;
+    }
+
+    @include on-mobile {
+      width: calc(96% / 2);
     }
   }
 }
