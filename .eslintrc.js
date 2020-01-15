@@ -22,7 +22,8 @@ module.exports = {
     'implicit-arrow-linebreak': 0,
     'arrow-parens': 0,
     'vue/valid-v-for': 0,
-    'no-unused-expressions': 0
+    'no-unused-expressions': 0,
+    'max-len': 0
   },
   parserOptions: {
     parser: 'babel-eslint'

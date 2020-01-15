@@ -4,7 +4,7 @@ button,
   padding: 10px;
   border: solid 1px transparent;
   border-radius: 10px;
-  background: $orange;
+  background: $main;
   transition: all 0.3s;
   font-size: size(16);
   color: white;
@@ -24,12 +24,12 @@ button,
 }
 
 button.action {
-  background: $orange;
+  background: $main;
   padding: 10px 25px;
 }
 
 button.add {
-  background: $orange;
+  background: $main;
 }
 
 button.remove {

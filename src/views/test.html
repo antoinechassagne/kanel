@@ -1,0 +1,256 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    ​
+    <title>Generated invoice</title>
+    ​
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+      integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+      crossorigin="anonymous"
+    />
+    ​
+    <style>
+      .invoice-title h1,
+      .invoice-title h3 {
+        display: inline-block;
+      }
+
+      ​ .table > tbody > tr > .no-line {
+        border-top: none;
+      }
+
+      ​ .table > thead > tr > .no-line {
+        border-bottom: none;
+      }
+
+      ​ .table > tbody > tr > .thick-line {
+        border-top: 2px solid;
+      }
+
+      ​ .col-sm-1,
+      .col-sm-2,
+      .col-sm-3,
+      .col-sm-4,
+      .col-sm-5,
+      .col-sm-6,
+      .col-sm-7,
+      .col-sm-8,
+      .col-sm-9,
+      .col-sm-10,
+      .col-sm-11,
+      .col-sm-12 {
+        float: left;
+      }
+
+      ​ .col-sm-12 {
+        width: 100%;
+      }
+
+      ​ .col-sm-11 {
+        width: 91.66666666666666%;
+      }
+
+      ​ .col-sm-10 {
+        width: 83.33333333333334%;
+      }
+
+      ​ .col-sm-9 {
+        width: 75%;
+      }
+
+      ​ .col-sm-8 {
+        width: 66.66666666666666%;
+      }
+
+      ​ .col-sm-7 {
+        width: 58.333333333333336%;
+      }
+
+      ​ .col-sm-6 {
+        width: 50%;
+      }
+
+      ​ .col-sm-5 {
+        width: 41.66666666666667%;
+      }
+
+      ​ .col-sm-4 {
+        width: 33.33333333333333%;
+      }
+
+      ​ .col-sm-3 {
+        width: 25%;
+      }
+
+      ​ .col-sm-2 {
+        width: 16.666666666666664%;
+      }
+
+      ​ .col-sm-1 {
+        width: 8.333333333333332%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="invoice-title">
+            <h1>
+              <img
+                src="{{ path_to_public }}/images/logo.png"
+                style="height: 50px; margin-right: 20px;"
+                alt="Logo Lovelydays"
+              />
+            </h1>
+
+            {#
+            <h1>
+              <img
+                src="{{ asset('/images/logo.png') }}"
+                style="height: 50px; margin-right: 20px;"
+                alt="Logo Lovelydays"
+              />Invoice
+            </h1>
+            #}
+            <h3 class="pull-right">{{ type ? type : "Unknown type" }}</h3>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-sm-6">
+              <address>
+                <strong>LOVELYDAYS LUXURY RENTALS</strong><br />
+                563 Chiswick High Road<br />
+                W4 3AY<br />
+                London, United Kingdom<br />
+                http://www.lovelydays.com
+              </address>
+            </div>
+            <div class="col-sm-6 text-right">
+              <address>
+                <strong>
+                  {% if Booking.idUsersUsers.username is defined %} {{ Booking.idUsersUsers.username
+                  }}
+                </strong>
+                <br />
+                {% if Booking.idUsersUsers.idLocations %} {{
+                Booking.idUsersUsers.idLocations.nameLocations }} {% endif %}
+                <br /><br />
+                {% if Booking.idUsersUsers.emailUsers is defined %} {{
+                Booking.idUsersUsers.emailUsers }} {% endif %}
+                <br />
+                {% if Booking.idUsersUsers.phoneUsers is defined %} {{
+                Booking.idUsersUsers.phoneUsers }} {% endif %}
+              </address>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <address>
+                <strong>Booking Details</strong><br />
+                ​ {% if Booking.idProperties.nameProperties is defined %} Property:
+                <strong>{{ Booking.idProperties.nameProperties }}</strong>
+                <br />
+                {% endif %} {% if Booking.idProperties.idLocations.nameLocations is defined %}
+                Address: {{ Booking.idProperties.idLocations.nameLocations }}
+                <br />
+                {% endif %} Arrival: {{ Booking.arrivalBookings|date('y/m/d H:i:s') }}
+                <br />
+                Departure: {{ Booking.departureBookings|date('y/m/d H:i:s') }}
+              </address>
+            </div>
+            <div class="col-sm-6 text-right">
+              <address>
+                <strong>Invoice Date:</strong><br />
+                {{ invoiceDate | date("Y/m/d") }}<br /><br />
+              </address>
+            </div>
+          </div>
+        </div>
+      </div>
+      ​
+      <div class="row" style="margin-top: 2cm;">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title"><strong>Summary</strong></h3>
+            </div>
+            <div class="panel-body">
+              <div class="table-responsive">
+                <table class="table table-condensed">
+                  <thead>
+                    <tr>
+                      <td><strong>Property</strong></td>
+                      <td class="text-center"><strong>Price per Night</strong></td>
+                      <td class="text-center"><strong>Nights</strong></td>
+                      <td class="text-right"><strong>Total</strong></td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      {% if Booking.idProperties.nameProperties is defined %}
+                      <td>{{ Booking.idProperties.nameProperties }}</td>
+                      {% endif %} ​ {% if Booking.pricingBookings is defined and currency is defined
+                      %}
+                      <td class="text-center">
+                        {{ currency }}{{ Booking.pricingBookings }} / night
+                      </td>
+                      {% endif %} ​ {% if nights is defined %}
+                      <td class="text-center">{{ nights }}</td>
+                      {% endif %} ​
+                    </tr>
+                    ​
+                    <tr>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><strong></strong></td>
+                      <td class="no-line text-right"></td>
+                    </tr>
+                    <tr>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><strong>VAT</strong></td>
+                      <td class="no-line text-right">N/A</td>
+                    </tr>
+                    <tr>
+                      <td class="no-line"></td>
+                      <td class="no-line"></td>
+                      <td class="no-line text-center"><strong>Total</strong></td>
+                      {% if Booking.pricingBookings is defined and currency is defined %}
+                      <td class="no-line text-right">
+                        {{ currency }}{{ Booking.pricingBookings }}
+                      </td>
+                      {% endif %}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      ​ {% if type == "Invoice" %}
+      <div style="margin-top:10px;">
+        <b>Bank details</b><br />
+        {% if currency == '£' %}
+        <u>Account:</u> LUXURY RENTAL GROUP, LOVELYDAYS LTD, Pounds<br />
+        <u>Sort code:</u> 20-47-34<br />
+        <u>Account No:</u> 0319-0064<br />
+        <u>IBAN:</u> GB02 BARC 2047 3403 1900 64 {% elseif currency == '€' %} <u>Account:</u> LUXURY
+        RENTAL GROUP, LOVELYDAYS LTD, Euros<br />
+        <u>IBAN:</u> GB71 BARC 2047 3446 5079 55 {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>

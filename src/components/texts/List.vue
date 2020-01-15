@@ -1,3 +1,5 @@
+/*eslint max-len: ["error", { "ignoreStrings": true }]*/
+
 <template>
   <fragment>
     <h3 class="list__label">{{ label }}</h3>
