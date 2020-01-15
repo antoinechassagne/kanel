@@ -82,13 +82,15 @@ export default {
 
       // Food group is already in state
       if (index !== -1) {
-        // Prevent decrementing a food group with 0 portion
-        if (this.meals[period][index].portions === 0 && mutation.type === 'remove') return;
-
         // Increment/decrement
         mutation.type === 'add'
           ? this.meals[period][index].portions++
           : this.meals[period][index].portions--;
+
+        // Remove object if portions is now 0
+        if (this.meals[period][index].portions <= 0) {
+          this.meals[period].splice(index, 1);
+        }
         return;
       }
 

@@ -30,6 +30,17 @@ const actions = {
   updateDayMeals(context, content) {
     const { weekMeals } = state;
     weekMeals[content.day] = content.meals;
+
+    // Create array of filled periods
+    const filledPeriods = Object.keys(weekMeals[content.day]).filter(
+      period => weekMeals[content.day][period].length
+    );
+
+    // Remove whole day if all periods are empty
+    if (!filledPeriods.length) {
+      delete weekMeals[content.day];
+    }
+
     context.commit('SET_WEEK_MEALS', weekMeals);
   },
   generateResults(context) {
