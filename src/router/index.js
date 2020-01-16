@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Week from '../views/Week.vue';
 import Meals from '../views/Meals.vue';
 import Synthesis from '../views/Synthesis.vue';
+import config from '../../vue.config';
 
 Vue.use(VueRouter);
 
@@ -30,8 +31,11 @@ const routes = [
   }
 ];
 
+const base = config.publicPath;
+
 const router = new VueRouter({
   mode: 'history',
+  base,
   routes
 });
 
