@@ -4,20 +4,17 @@
     <transition name="fade" mode="out-in">
       <router-view />
     </transition>
-    <BaseFooter />
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import BaseHeader from '@/components/base/BaseHeader';
-import BaseFooter from '@/components/base/BaseFooter';
 
 export default {
   name: 'App',
   components: {
-    BaseHeader,
-    BaseFooter
+    BaseHeader
   },
   methods: {
     ...mapActions({
